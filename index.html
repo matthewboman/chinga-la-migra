@@ -1,0 +1,91 @@
+<!DOCTYPE html >
+<html ng-app="checkpoint">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ICE Checkpoints</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css"/>
+
+    <!-- Libraries -->
+    <script src="js/angular.min.js"></script>
+    <script src="js/ng-map.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJeq_CoBTUtPWL2bNgGGIOfZ_UellNjoY"></script>
+
+    <!-- Angular -->
+    <script src="js/app.module.js"></script>
+    <script src="js/map-module.js"></script>
+    <script src="js/map-controller.js"></script>
+    <script src="js/map-service.js"></script>
+
+  </head>
+
+<body>
+<div class="container">
+  <div class="row" ng-controller="map-controller as vm">
+
+    <!-- Begin map -->
+    <ng-map style="height: 500px" center="35.5951,-82.5515" zoom="12" on-click="vm.placeMarker()">
+
+      <marker
+        ng-repeat="checkpoint in vm.newCheckpoints"
+        position={{checkpoint.position}}
+        on-click="vm.showDetail(checkpoint)">
+      </marker>
+
+      <marker
+        ng-repeat="checkpoint in vm.oldCheckpoints"
+        position={{checkpoint.position}}
+        on-click="vm.showDetail(checkpoint)"
+        icon="http://maps.google.com/mapfiles/ms/icons/yellow-dot.png">
+      </marker>
+
+      <!-- Open info window when icon clicked -->
+      <info-window id="checkpoint">
+        <div ng-non-bindable="">
+          <span>{{vm.checkpoint.date}}</span>
+        </div>
+      </info-window>
+
+      <!-- Open info window when map clicked -->
+      <info-window id="newCheckpoint">
+        <div ng-non-bindable="">
+          <form name ="addForm" novalidate>
+            <button type="submit" class="btn btn-block" ng-click="vm.createNewCheckpoint()">Add Checkpoint</button>
+          </form>
+        </div>
+      </info-window>
+    </ng-map>
+    <!-- End map -->
+    <br />
+    <div class="row">
+      <!-- Spanish -->
+      <div class="col-xs-12 col-md-6">
+        <p>
+        </p>
+      </div>
+      <!-- English -->
+      <div class="col-xs-12 col-md-6">
+        <p>
+          <strong>Do not distribute publically or on social media. Share only with trusted sources.</strong>
+        </p>
+        <p>
+          <strong>Red: </strong>A checkpoint has been spotted within the last hour.
+        </p>
+        <p>
+          <strong>Yellow: </strong>A checkpoint has been spotted within the last 5 hours.
+        </p>
+        <p>
+          <strong>To use: </strong>Click on the map in the checkpoint location
+          and Add Checkpoint. Click on checkpoints to see the day/time posted.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
