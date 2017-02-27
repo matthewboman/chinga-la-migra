@@ -5,13 +5,14 @@ a quick-and-easy way for anyone to add the to an already-existing website. Ching
 Because anyone can click on the map to add checkpoints and the API is public, it's best to share the URL with only people
 you trust and keep it off social media.
 
-
+Check out the [Demo](https://crashspringfield.github.io/chinga-la-migra/) to test capabilities.
 
 ##Installation
 
     git clone https://github.com/crashspringfield/chinga-la-migra/
-    set up public API and image uploading capabilities
-    attach to any site as-if
+    
+  - Set up public API and image uploading capabilities
+  - Attach to any site as-is
 
 ## Setup for public API
   1. Sign up at Mlabs.com
@@ -28,5 +29,8 @@ you trust and keep it off social media.
 
 ## Contributing
 
-We're currently working on a Spanish translation for the right side of the page. Another soon-to-be-added capability is
-photo-verification of checkpoints.
+If there's a feature you'd like to see, raise an issue.
+
+## License
+
+MIT
