@@ -2,8 +2,9 @@
 
   angular.module('checkpoint', [
     // My modules
-
-    'map'
+    'cloudinary',
+    'map',
+    'ngFileUpload'
 
     ])
 

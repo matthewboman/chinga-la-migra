@@ -2,3 +2,36 @@ ng-map {
  height: 80%;
  width: 100%;
 }
+
+
+.upload-button {
+  display: inline-block;
+  font-size: 14px;
+  background-color: rgb(15, 97, 172);
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 2px;
+  width: 100px;
+  height: 18px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.submit-button {
+  font-size: 14px;
+  background-color: rgb(15, 97, 172);
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 2px;
+  height: 18px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+.checkpoint-image {
+  height: 250px;
+  width: 250px;
+}

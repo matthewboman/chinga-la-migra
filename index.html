@@ -11,11 +11,22 @@
     <link rel="stylesheet" href="css/main.css"/>
 
     <!-- Libraries -->
-    <script src="js/angular.min.js"></script>
-    <script src="js/ng-map.min.js"></script>
+    <script src="js/libraries/lodash.js"></script>
+    <script src="js/libraries/cloudinary-core.js"></script>
+    <!-- angular file upload -->
+    <script src="js/libraries/ng-file-upload-shim.js"></script>
+    <!-- angular dependencies and map -->
+    <script src="js/libraries/angular.js"></script>
+    <script src="js/libraries/ng-map.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJeq_CoBTUtPWL2bNgGGIOfZ_UellNjoY"></script>
+    <script src="js/libraries/angular-resource.js"></script>
+    <!-- angular file upload -->
+    <script src="js/libraries/ng-file-upload.js"></script>
+    <!-- cloudinary angular plugin -->
+    <script src="js/libraries/angular.cloudinary.js"></script>
 
-    <!-- Angular -->
+
+    <!-- My angular shit -->
     <script src="js/app.module.js"></script>
     <script src="js/map-module.js"></script>
     <script src="js/map-controller.js"></script>
@@ -47,17 +58,45 @@
       <info-window id="checkpoint">
         <div ng-non-bindable="">
           <span>{{vm.checkpoint.date}}</span>
+          <br />
+          <img src="{{vm.checkpoint.url}}" class="checkpoint-image"/>
+          <br/>
+          <p>{{vm.checkpoint.info}}</p>
         </div>
       </info-window>
 
       <!-- Open info window when map clicked -->
       <info-window id="newCheckpoint">
         <div ng-non-bindable="">
+          <div id="direct_upload"
+            ngf-drop="vm.uploadFiles($files)"
+            ngf-drag-over-class="dragOverClass($event)"
+            ng-model="files"
+            ng-multiple="true">
+
           <form name ="addForm" novalidate>
-            <button type="submit" class="btn btn-block" ng-click="vm.createNewCheckpoint()">Add Checkpoint</button>
+            <div class="form-group">
+              <label for="info">Description </label>
+              <textarea name="info" cols="40" rows="5" type="text" class="form-control" id="info" placeholder="useful information" ng-model="vm.formData.info"></textarea>
+            </div>
+
+            <div class="upload_button_holder">
+              <div href="#" class="upload-button" ngf-select="vm.uploadFiles($files)" multiple title="upload" resetOnClick="true" >Upload Image</div>
+            </div>
+            <div class="file" ng-repeat="file in vm.files">
+              <p>{{file.name}} {{f.$error}} {{f.$errorParam}}</p>
+              <div class="status">{{file.status}}</div>
+            </div>
+            <br />
+            <button type="submit" class="submit-button" ng-click="vm.createNewCheckpoint()">Add Checkpoint</button>
           </form>
+
         </div>
-      </info-window>
+      </div>
+    </info-window>
+
+
+
     </ng-map>
     <!-- End map -->
     <br />
@@ -68,13 +107,13 @@
        	  <strong>No compartan p&uacute;blicamente o en redes sociales. Compartan &uacute;nicamente con personas de confianza</strong>
         </p>
         <p>
-       	  <strong>Rojo: </strong>Un punto de ret&eacute; n ha sido visto durante la &uacute;ltima hora.
+       	  <strong>Rojo: </strong>Un punto de ret&eacute;n ha sido visto durante la &uacute;ltima hora.
         </p>
         <p>
-       	  <strong>Amarillo: </strong>Un punto de ret&eacute; n ha sido visto durante la &uacute;ltimas cinco horas.
+       	  <strong>Amarillo: </strong>Un punto de ret&eacute;n ha sido visto durante la &uacute;ltimas cinco horas.
         </p>
         <p>
-       	  <strong>C&oacute;mo indicar un ret&eacute; n: </strong>Marca en el mapa el punto de ret&eacute; n.
+       	  <strong>C&oacute;mo indicar un ret&eacute;n: </strong>Marca en el mapa el punto de ret&eacute;n.
         </p>
       </div>
       <!-- English -->
